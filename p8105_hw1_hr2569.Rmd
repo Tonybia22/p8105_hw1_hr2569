@@ -1,0 +1,6 @@
+---
+title: "p8105_hw1_hr2569"
+author: "Hongzhu Ren"
+date: "2023-09-20"
+output: github_document
+---
