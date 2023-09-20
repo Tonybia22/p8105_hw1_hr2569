@@ -51,8 +51,42 @@ From the scatterplot, we can see that temperature rises in flucuations over time
 
 Now we save the scatterplot.
 
-```{r save_plot, echo=FALSE}
+```{r save_plot}
 ggsave("temp_v_time_hour_scatterplot.png")
 ```
 
+# problem 2
 
+Creat a dataframe with tibble function
+
+```{r create_df}
+set.seed(0)
+
+hw1_df = tibble(
+  norm_samp = rnorm(10),
+  norm_samp_logic = norm_samp > 0,
+  char_samp = sample(letters,10),
+  factor_samp = as.factor(sample(1:3, 10, replace = TRUE))
+)
+```
+
+Take mean of each variable
+
+```{r mean_test}
+mean(pull(hw1_df, norm_samp))
+mean(pull(hw1_df, norm_samp_logic))
+mean(pull(hw1_df, char_samp))
+mean(pull(hw1_df, factor_samp))
+```
+
+The numeric and logic variables worked while the character and factor failed.
+
+Now we test the as.numeric function
+
+```{r as.numeric_test, eval=FALSE}
+as.numeric(pull(hw1_df, norm_samp_logic))
+as.numeric(pull(hw1_df, char_samp))
+as.numeric(pull(hw1_df, factor_samp))
+```
+
+The logic and factor worked while the character failed. But here, the factor was created with numeric numbers from 1 to 3, if the factor were comprised of character like "male" and "female", it won't work, either.
