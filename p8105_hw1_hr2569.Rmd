@@ -4,3 +4,55 @@ author: "Hongzhu Ren"
 date: "2023-09-20"
 output: github_document
 ---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(moderndive)
+```
+
+# problem 1
+
+## 1. Dataset interpretation
+
+The dataset describes Hourly meteorological data for LGA, JFK and EWR for the month of January 2013.
+
+```{r data view}
+data("early_january_weather")
+```
+
+1a. The variables in the dataset are `r colnames(early_january_weather)`
+
+Mean and sd for specific variables are listed below
+
+Variables | mean | sd
+--------- | -------- | ---------
+*temp* | `r mean(early_january_weather$temp)` | `r sd(early_january_weather$temp)`
+*dewp* | `r mean(early_january_weather$dewp)` | `r sd(early_january_weather$dewp)`
+*humid* | `r mean(early_january_weather$humid)` | `r sd(early_january_weather$humid)`
+*wind_speed* | `r mean(early_january_weather$wind_speed)` | `r sd(early_january_weather$wind_speed)`
+*precip* | `r mean(early_january_weather$precip)` | `r sd(early_january_weather$precip)`
+*visib* | `r mean(early_january_weather$visib)` | `r sd(early_january_weather$visib)`
+
+1b. The dataset has `r nrow(early_january_weather)` rows and `r ncol(early_january_weather)` columns
+
+1c. The mean temperature is `r mean(early_january_weather$temp)`
+
+## 2. Scatterplot
+
+Draw a scatterplot of `temp` and `time_hour`.
+
+```{r temp&time_hour_scatterplot}
+ggplot(early_january_weather, 
+       aes(y = temp, x = time_hour, color = humid)) + 
+  geom_point()
+```
+
+From the scatterplot, we can see that temperature rises in flucuations over time. And the daily temperature's range were similar.  
+
+Now we save the scatterplot.
+
+```{r save_plot, echo=FALSE}
+ggsave("temp_v_time_hour_scatterplot.png")
+```
+
+
